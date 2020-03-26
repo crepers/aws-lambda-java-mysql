@@ -18,35 +18,36 @@ public class MySQLConnect {
 		 // Laod spring-config.xml file
         //ApplicationContext ctx = new ClassPathXmlApplicationContext("com/hmkcode/config/spring-config.xml");
  
+		String args;	// an error code for testing
 		LOGGER.info("start main");
 		
 		String now = DateTime.now().toString("yyyyMMddHHmmss");
 		
 		//get jdbcTemplatePersonDAO
-        PersonDAO personDAO = new PersonDAO(MyBatisConnectionFactory.getSqlSessionFactory());
- 
-        //create person bean to insert
-        Person person = new Person();
-        person.setId(now);
-        person.setName("Person " + now);
- 
-        //( 1 ) insert person 
-        personDAO.insert(person);
- 
-        //( 2 ) select persons by id
-        personDAO.selectById(person.getId());
- 
-        //( 3 ) select all
-        List<Person> persons = personDAO.selectAll();
- 
-        //**set name of all persons
-        for(int i = 0; i < persons.size(); i++){
-        	System.out.println("Name is " + persons.get(i).getId());
-        	System.out.println("Name is " + persons.get(i).getName());
-//            persons.get(i).setName("Person Name "+i);
-//            //( 4 ) update person
-//            personDAO.update(persons.get(i));
-        }
+		PersonDAO personDAO = new PersonDAO(MyBatisConnectionFactory.getSqlSessionFactory());
+
+		//create person bean to insert
+		Person person = new Person();
+		person.setId(now);
+		person.setName("Person " + now);
+
+		//( 1 ) insert person 
+		personDAO.insert(person);
+
+		//( 2 ) select persons by id
+		personDAO.selectById(person.getId());
+
+		//( 3 ) select all
+		List<Person> persons = personDAO.selectAll();
+
+		//**set name of all persons
+		for(int i = 0; i < persons.size(); i++){
+			System.out.println("Name is " + persons.get(i).getId());
+			System.out.println("Name is " + persons.get(i).getName());
+	//            persons.get(i).setName("Person Name "+i);
+	//            //( 4 ) update person
+	//            personDAO.update(persons.get(i));
+		}
  
         //**check update
 //        persons = personDAO.selectAll();
